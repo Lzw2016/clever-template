@@ -1,7 +1,9 @@
 package org.clever.template.model;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -10,8 +12,9 @@ import java.io.Serializable;
  * 作者： lzw<br/>
  * 创建时间：2019-05-16 18:50 <br/>
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class ExcelModelDto implements Serializable {
+public class ExcelModelDto extends BaseRowModel implements Serializable {
 
     @ExcelProperty(value = {"第1列"}, index = 0)
     @NotBlank
