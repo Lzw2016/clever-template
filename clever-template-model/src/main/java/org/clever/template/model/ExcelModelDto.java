@@ -4,6 +4,7 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -17,7 +18,7 @@ import java.io.Serializable;
 public class ExcelModelDto extends BaseRowModel implements Serializable {
 
     @ExcelProperty(value = {"第1列"}, index = 0)
-    @NotBlank
+    @NotBlank(message = "第一列不能为空")
     private String column1;
 
     @ExcelProperty(value = {"第2列"}, index = 1)
@@ -26,6 +27,7 @@ public class ExcelModelDto extends BaseRowModel implements Serializable {
 
     @ExcelProperty(value = {"第3列"}, index = 2)
     @NotBlank
+    @Length(min = 3, max = 5, message = "长度只能是3~5个字符")
     private String column3;
 
     @ExcelProperty(value = {"第4列"}, index = 3)

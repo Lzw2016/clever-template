@@ -60,6 +60,6 @@ public class ExcelImportExportController {
     @GetMapping("/excel-templates")
     public void downloadExcelTemplates(HttpServletRequest request, HttpServletResponse response) {
         List<ExcelModelDto> list = new ArrayList<>();
-        ExcelDataWriter.exportExcel(request, response, ExcelModelDto.class, list);
+        ExcelDataWriter.exportExcel(request, response, "Excel模版.xlsx", ExcelModelDto.class, list);
     }
 }
