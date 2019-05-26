@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 作者： lzw<br/>
@@ -27,6 +28,9 @@ public class RemoteSelectController {
             @RequestParam(value = "num", required = false, defaultValue = "10") int num) throws InterruptedException {
         //Thread.sleep(1000 * 3);
         List<String> result = new ArrayList<>(num);
+        if (Objects.equals("test", key)) {
+            return result;
+        }
         for (int i = 1; i <= num; i++) {
             result.add(key + "-数据" + i);
         }
@@ -39,6 +43,9 @@ public class RemoteSelectController {
             @RequestParam(value = "num", required = false, defaultValue = "10") int num) throws InterruptedException {
         // Thread.sleep(1000 * 3);
         List<RemoteDataRes> result = new ArrayList<>(num);
+        if (Objects.equals("test", key)) {
+            return result;
+        }
         for (int i = 1; i <= num; i++) {
             result.add(new RemoteDataRes(key + "-数据" + i));
         }
