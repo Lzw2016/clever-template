@@ -229,6 +229,8 @@ clever:
       token-name: 'ServerApiToken'
       token-value: 'uheduifhiuewjeihuhbgr89489y458ojhas9yd78wnajxioqjw893urax23er3fxcasx2wt56ujyjnva2e32taxaE1R3R'
   config:
+    upload-speed-limit: 102400
+    download-speed-limit: 102400
     local-storage-config:
       disk-base-path: '/Users/lzw/Downloads/tmp/'
       stored-node: '10.2.136.61'
