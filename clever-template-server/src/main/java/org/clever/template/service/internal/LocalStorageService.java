@@ -103,8 +103,7 @@ public class LocalStorageService extends AbstractStorageService {
         // 设置存储所用的时间
         fileInfo.setStoredTime(storageEnd - storageStart);
         log.info("[本地服务器]文件存储所用时间:[{}ms]", fileInfo.getStoredTime());
-
-        // fileInfo.setReadUrl("");
+        fileInfo.setReadUrl(fileInfo.getFilePath() + File.separator + fileInfo.getNewName());
     }
 
     @Override
