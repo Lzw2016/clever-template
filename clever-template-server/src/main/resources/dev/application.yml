@@ -28,6 +28,7 @@ spring:
       enabled: true
       max-file-size: 10MB
       max-request-size: 10MB
+      location: '/Users/lzw/Downloads/tmp/temp'
 
   http: #------------------------------------------------------------------ http配置
     converters:
@@ -227,6 +228,10 @@ clever:
     server-api-access-token:
       token-name: 'ServerApiToken'
       token-value: 'uheduifhiuewjeihuhbgr89489y458ojhas9yd78wnajxioqjw893urax23er3fxcasx2wt56ujyjnva2e32taxaE1R3R'
+  config:
+    local-storage-config:
+      disk-base-path: '/Users/lzw/Downloads/tmp'
+      stored-node: '10.2.136.61'
 
 ###################################################################################
 ### Feign配置
