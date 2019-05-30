@@ -21,6 +21,6 @@ public class ServerWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/api/excel-templates/**").addResourceLocations("classpath:/excel-templates/");
-        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + globalConfig.getLocalStorageConfig().getDiskBasePath());
+        registry.addResourceHandler("/api/file/**").addResourceLocations("file:///" + globalConfig.getLocalStorageConfig().getDiskBasePath());
     }
 }
