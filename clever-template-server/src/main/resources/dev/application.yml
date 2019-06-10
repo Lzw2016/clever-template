@@ -28,7 +28,7 @@ spring:
       enabled: true
       max-file-size: 10MB
       max-request-size: 10MB
-      location: '/Users/lzw/Downloads/tmp/temp'
+      location: 'G:\filestoragepath\temp'
 
   http: #------------------------------------------------------------------ http配置
     converters:
@@ -53,10 +53,11 @@ spring:
 
   redis: #---------------------------------------------------------------- Redis配置
     ssl: false
-    host: 39.108.68.132
-    port: 16379
+    host: redis.msvc.top
+    port: 6379
     timeout: 10s
     database: 0
+    password: lizhiwei1993
     lettuce:
       pool:
         max-active: 16
@@ -68,9 +69,9 @@ spring:
   datasource: #----------------------------------------------------------- 数据库配置
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.108.68.132:3306/clever-template
+    url: jdbc:mysql://mysql.msvc.top:3306/clever-template
     username: clever-template
-    password: lizhiwei
+    password: lizhiwei1993
     hikari:
       data-source-properties:
         serverTimezone: GMT+8
@@ -232,8 +233,8 @@ clever:
     upload-speed-limit: 102400
     download-speed-limit: 102400
     local-storage-config:
-      disk-base-path: '/Users/lzw/Downloads/tmp/'
-      stored-node: '10.2.136.61'
+      disk-base-path: 'G:\filestoragepath\'
+      stored-node: '192.168.31.230'
 
 ###################################################################################
 ### Feign配置
