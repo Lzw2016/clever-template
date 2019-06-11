@@ -28,6 +28,7 @@ public class FileUploadController {
     @ApiOperation("文件上传，支持多文件上传")
     @PostMapping("/upload")
     public UploadFilesRes upload(HttpServletRequest request) {
+//        throw new BusinessException("业务异常123456");
         return fileUploadService.upload(request);
     }
 
