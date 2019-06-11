@@ -22,6 +22,7 @@ public class FormEngineController {
 
     @PostMapping("/submit")
     public Object submit(@RequestBody String body) throws InterruptedException {
+//        throw new BusinessException("业务异常");
         Thread.sleep(1000 * (int) (Math.random() * 5));
         List<String> result = new ArrayList<>();
         log.info("body --> {}", body);
