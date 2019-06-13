@@ -233,8 +233,8 @@ clever:
     upload-speed-limit: 102400
     download-speed-limit: 102400
     local-storage-config:
-      disk-base-path: 'G:\filestoragepath\'
-      stored-node: '192.168.31.230'
+      disk-base-path: '/Users/lzw/Downloads/tmp/'
+      stored-node: '10.2.108.46'
 
 ###################################################################################
 ### Feign配置
