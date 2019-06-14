@@ -1,7 +1,6 @@
 package org.clever.template.config;
 
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +30,8 @@ public class BeanConfiguration {
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
     @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+    public CustomPaginationInterceptor paginationInterceptor() {
+        CustomPaginationInterceptor paginationInterceptor = new CustomPaginationInterceptor();
 //        paginationInterceptor.setSqlParser()
 //        paginationInterceptor.setDialectClazz()
 //        paginationInterceptor.setOverflow()

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.clever.template.dto.request.QueryPermissionReq;
 import org.clever.template.entity.Permission;
 import org.clever.template.mapper.PermissionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,15 @@ public class QueryPageService {
     private PermissionMapper permissionMapper;
 
     public IPage<Permission> findPermission() {
-        IPage<Permission> page = permissionMapper.selectPage(new Page<>(1, 10), new QueryWrapper<>());
+        Page<Permission> page = new Page<>(1, 10);
+        page.setDesc("permission_str", "resources_type", "description");
+        page.setAsc("id", "sys_name", "title");
+        return permissionMapper.selectPage(page, new QueryWrapper<>());
+    }
+
+    public IPage<Permission> findPermission(QueryPermissionReq query) {
+        Page<Permission> page = new Page<>(query.getPageNo(), query.getPageSize());
+        page.setRecords(permissionMapper.findByPage(query));
         return page;
     }
 }
