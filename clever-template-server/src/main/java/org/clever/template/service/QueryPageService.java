@@ -31,8 +31,14 @@ public class QueryPageService {
     }
 
     public IPage<Permission> findPermission(QueryPermissionReq query) {
-        Page<Permission> page = new Page<>(query.getPageNo(), query.getPageSize());
-        page.setRecords(permissionMapper.findByPage(query));
-        return page;
+        query.addOrderFieldMapping("sysName", "sys_name");
+        query.addOrderFieldMapping("title", "title");
+        query.addOrderFieldMapping("permissionStr", "permission_str");
+        query.addOrderFieldMapping("createAt", "create_at");
+        query.addOrderFieldMapping("updateAt", "update_at");
+        if (query.getOrderFields().size() <= 0) {
+            query.addOrderField("createAt", QueryPermissionReq.DESC);
+        }
+        return query.result(permissionMapper.findByPage(query));
     }
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import lombok.extern.slf4j.Slf4j;
+import org.clever.common.server.config.CustomPaginationInterceptor;
 import org.clever.common.utils.exception.ExceptionUtils;
 import org.clever.template.servlet.SpeedLimitMultipartResolver;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartProperties;

@@ -16,5 +16,6 @@
                 and permission_str = #{query.permissionStr}
             </if>
         </where>
+        <!--ORDER BY sys_name-->
     </select>
 </mapper>
