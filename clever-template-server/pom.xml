@@ -53,7 +53,7 @@
             <artifactId>jjwt-jackson</artifactId>
             <scope>runtime</scope>
         </dependency>
-
+        <!--clever-template-->
         <dependency>
             <groupId>org.clever</groupId>
             <artifactId>clever-template-model</artifactId>

@@ -76,7 +76,7 @@
                 <artifactId>clever-template-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--clever common-->
+            <!--clever-common-->
             <dependency>
                 <groupId>org.clever</groupId>
                 <artifactId>clever-common-utils</artifactId>
@@ -97,7 +97,7 @@
                 <artifactId>clever-common-client</artifactId>
                 <version>${common.version}</version>
             </dependency>
-            <!--clever security-->
+            <!--clever-security-->
             <dependency>
                 <groupId>org.clever</groupId>
                 <artifactId>clever-security-embed</artifactId>
