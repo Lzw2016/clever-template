@@ -40,6 +40,7 @@ public class QueryPageController {
     @GetMapping("detail_data")
     public Object getDetailData() throws InterruptedException {
         Thread.sleep(1000 * (int) (Math.random() * 5));
+//        Thread.sleep(78);
         Map<String, Object> data = new HashMap<>();
         data.put("name", "freemenL");
         data.put("dutyType", "早班");
