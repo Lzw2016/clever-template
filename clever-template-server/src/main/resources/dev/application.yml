@@ -234,7 +234,7 @@ clever:
     download-speed-limit: 102400
     local-storage-config:
       disk-base-path: '.\data\'
-      stored-node: '192.168.31.230'
+      stored-node: '127.0.0.1'
 
 ###################################################################################
 ### Feign配置
