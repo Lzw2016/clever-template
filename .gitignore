@@ -26,5 +26,6 @@ hs_err_pid*
 *.iml
 .idea
 target
+data
 .docker
 .DS_Store
