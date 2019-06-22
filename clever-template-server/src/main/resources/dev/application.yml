@@ -28,7 +28,7 @@ spring:
       enabled: true
       max-file-size: 10MB
       max-request-size: 10MB
-      location: '.\data\temp'
+      location: 'data/temp'
 
   http: #------------------------------------------------------------------ http配置
     converters:
@@ -233,7 +233,7 @@ clever:
     upload-speed-limit: 102400
     download-speed-limit: 102400
     local-storage-config:
-      disk-base-path: '.\data\'
+      disk-base-path: 'data/'
       stored-node: '127.0.0.1'
 
 ###################################################################################
