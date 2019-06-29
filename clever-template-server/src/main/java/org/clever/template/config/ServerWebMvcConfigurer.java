@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.io.File;
+
 /**
  * 作者： lzw<br/>
  * 创建时间：2019-05-17 14:29 <br/>
@@ -21,6 +23,7 @@ public class ServerWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/api/excel-templates/**").addResourceLocations("classpath:/excel-templates/");
-        registry.addResourceHandler("/api/file/**").addResourceLocations("file:///" + globalConfig.getLocalStorageConfig().getDiskBasePath());
+        File file = new File(globalConfig.getLocalStorageConfig().getDiskBasePath());
+        registry.addResourceHandler("/api/file/**").addResourceLocations("file:///" + file.getAbsolutePath() + File.separator);
     }
 }

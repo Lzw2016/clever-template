@@ -58,9 +58,10 @@ public class LocalStorageService extends AbstractStorageService {
         }
 
         storedNode = globalConfig.getLocalStorageConfig().getStoredNode();
-        if ("127.0.0.1".equals(storedNode)) {
-            throw new IllegalArgumentException("[本地服务器]文件存储节点(storedNode)=[" + storedNode + "]不能是127.0.0.1");
-        }
+//        TODO 127.0.0.1
+//        if ("127.0.0.1".equals(storedNode)) {
+//            throw new IllegalArgumentException("[本地服务器]文件存储节点(storedNode)=[" + storedNode + "]不能是127.0.0.1");
+//        }
         Set<String> ipAddress = IPAddressUtils.getInet4Address();
         if (!ipAddress.contains(storedNode)) {
             ipAddress.remove("127.0.0.1");
