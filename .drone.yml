@@ -21,7 +21,7 @@ steps:
       - name: package-java
         path: /package-java
     commands:
-      - mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -B -V -Pdev --settings /package-java/Maven/settings.xml
+      - mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -B -V -Pprod --settings /package-java/Maven/settings.xml
       # - mvn deploy -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -B -V -Pdev --settings /package-java/Maven/settings.xml
       # - cp -f clever-template-server/target/clever-template-server-*-SNAPSHOT.jar /package-java
 
