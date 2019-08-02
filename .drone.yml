@@ -33,7 +33,7 @@ steps:
       # bip: true
       insecure: true
       dockerfile: ./Dockerfile
-      target: dev
+      target: prod
       tags: ['0.0.1-SNAPSHOT']
       force_tag: true
       auto_tag: false
