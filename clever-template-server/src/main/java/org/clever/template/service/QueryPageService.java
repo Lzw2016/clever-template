@@ -23,6 +23,7 @@ public class QueryPageService {
     @Autowired
     private PermissionMapper permissionMapper;
 
+    @SuppressWarnings("deprecation")
     public IPage<Permission> findPermission() {
         Page<Permission> page = new Page<>(1, 10);
         page.setDesc("permission_str", "resources_type", "description");

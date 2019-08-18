@@ -2,6 +2,7 @@ package org.clever.template.controller;
 
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.clever.template.entity.Permission;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +29,10 @@ public class FormEngineController {
         log.info("body --> {}", body);
         result.add(body);
         return result;
+    }
+
+    @PostMapping("/submit2")
+    public Object submit(@RequestBody Permission permission) {
+        return permission;
     }
 }
