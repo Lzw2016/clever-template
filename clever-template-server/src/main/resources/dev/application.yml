@@ -140,6 +140,7 @@ management:
 ###################################################################################
 mybatis-plus:
   configuration:
+    # local-cache-scope: statement # 可以关闭一级缓存
     auto-mapping-behavior: partial
     auto-mapping-unknown-column-behavior: none
     map-underscore-to-camel-case: true

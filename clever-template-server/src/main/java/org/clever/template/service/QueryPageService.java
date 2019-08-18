@@ -28,6 +28,7 @@ public class QueryPageService {
         Page<Permission> page = new Page<>(1, 10);
         page.setDesc("permission_str", "resources_type", "description");
         page.setAsc("id", "sys_name", "title");
+        permissionMapper.selectPage(page, new QueryWrapper<>());
         return permissionMapper.selectPage(page, new QueryWrapper<>());
     }
 
@@ -43,6 +44,7 @@ public class QueryPageService {
         if (query.getOrderFields().size() <= 0) {
             query.addOrderField("createAt", QueryPermissionReq.DESC);
         }
+        permissionMapper.findByPage(query);
         return query.result(permissionMapper.findByPage(query));
     }
 }

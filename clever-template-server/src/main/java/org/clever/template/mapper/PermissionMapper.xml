@@ -3,7 +3,7 @@
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="org.clever.template.mapper.PermissionMapper">
 
-    <select id="findByPage" resultType="org.clever.template.entity.Permission">
+    <select id="findByPage" flushCache="true" resultType="org.clever.template.entity.Permission">
         select * from permission
         <where>
             <if test="query.sysName!=null and query.sysName!=''">
