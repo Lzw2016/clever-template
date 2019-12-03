@@ -27,6 +27,9 @@ steps:
 
   - name: 构建镜像[Docker]
     image: plugins/docker
+    volumes:
+      - name: docker-daemon
+        path: /etc/docker
     settings:
       registry: '172.18.1.1:15000'
       repo: '172.18.1.1:15000/java-service/clever-template-server'
@@ -105,5 +108,9 @@ volumes:
   - name: package-java
     host:
       path: /home/lizw/Desktop/docker-opt/package/java
+  # docker-daemon 配置
+  - name: docker-daemon
+    host:
+      path: /etc/docker
 
 # -------------------------------------------------------------------------------------------------------------
