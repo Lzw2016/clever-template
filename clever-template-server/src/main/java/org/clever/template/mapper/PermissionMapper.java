@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.clever.template.dto.request.QueryPermissionReq;
 import org.clever.template.entity.Permission;
+import org.clever.template.model.NextId;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +19,12 @@ import java.util.List;
 public interface PermissionMapper extends BaseMapper<Permission> {
 
     List<Permission> findByPage(@Param("query") QueryPermissionReq query);
+
+    void nextId(@Param("nextId") NextId nextId);
+
+    void updateCurrentValue(
+            @Param("companyFlag") String companyFlag,
+            @Param("businessType") String businessType,
+            @Param("prefix") String prefix,
+            @Param("step") Long step);
 }

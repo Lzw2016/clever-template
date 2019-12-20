@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
 <mapper namespace="org.clever.template.mapper.PermissionMapper">
+    <update id="updateCurrentValue">
+        update
+            auto_increment_id
+        set
+            current_value=current_value+#{step}
+        where company_flag=#{companyFlag} and business_type=#{businessType} and prefix=#{prefix}
+    </update>
 
     <select id="findByPage" flushCache="true" resultType="org.clever.template.entity.Permission">
         select * from permission
@@ -18,4 +25,24 @@
         </where>
         <!--ORDER BY sys_name-->
     </select>
+
+<!--    <parameterMap id="NextIdMap" type="org.clever.template.model.NextId">-->
+<!--        <parameter property="companyFlag" mode="IN" jdbcType="varchar"/>-->
+<!--        <parameter property="businessType" mode="IN" jdbcType="varchar"/>-->
+<!--        <parameter property="prefix" mode="IN" jdbcType="varchar"/>-->
+<!--        <parameter property="step" mode="IN" jdbcType="bigint"/>-->
+<!--        <parameter property="oldValue" mode="OUT" jdbcType="bigint"/>-->
+<!--        <parameter property="currentValue" mode="OUT" jdbcType="bigint"/>-->
+<!--    </parameterMap>-->
+
+    <insert id="nextId" statementType="CALLABLE" parameterType="org.clever.template.model.NextId">
+        call auto_increment_id_next(
+                #{nextId.companyFlag, mode=IN, jdbcType=VARCHAR},
+                #{nextId.businessType, mode=IN, jdbcType=VARCHAR},
+                #{nextId.prefix, mode=IN, jdbcType=VARCHAR},
+                #{nextId.step, mode=IN, jdbcType=BIGINT},
+                #{nextId.oldValue, mode=OUT, jdbcType=BIGINT},
+                #{nextId.currentValue, mode=OUT, jdbcType=BIGINT}
+            )
+    </insert>
 </mapper>
