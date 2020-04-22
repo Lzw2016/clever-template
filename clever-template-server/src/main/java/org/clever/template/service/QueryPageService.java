@@ -44,7 +44,7 @@ public class QueryPageService {
         if (query.getOrderFields().size() <= 0) {
             query.addOrderField("createAt", QueryPermissionReq.DESC);
         }
-        permissionMapper.findByPage(query);
+        // permissionMapper.findByPage(query);
         return query.result(permissionMapper.findByPage(query));
     }
 }
