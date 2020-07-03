@@ -178,7 +178,7 @@ clever:
       - '/*.js'
       - '/*.css'
       - '/*.html'
-      # 基本请求
+      # 基本请求1
       - '/actuator/**'
       - '/'
       - '/login/captcha.png'
