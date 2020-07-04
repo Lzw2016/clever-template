@@ -98,3 +98,103 @@ $
 --------------------------------------------------------------------------------------------------------------------------*/
 
 
+create table tb_order_detail_distinct
+(
+    id                  bigint                                      not null comment '主键id' primary key,
+    store_no            varchar(31)                                 not null comment '店铺编号',
+    order_code          varchar(63)                                 not null comment '订单编码(唯一)',
+    store_prod_no       varchar(31)                                 not null comment '店铺商品编码',
+    erp_no              varchar(31)                                 null comment 'ERP编码',
+    prod_name           varchar(255)                                null comment '商品名称',
+    prod_specification  varchar(255)                                null comment '规格',
+    package_unit        varchar(15)                                 null comment '单位',
+    manufacture         varchar(255)                                null comment '厂家',
+    front_pic           varchar(200)                                null comment '正面图片地址',
+    merchandise_number  decimal(14, 5)                              not null comment '购买数量',
+    out_number          decimal(14, 5) default 0.00000              not null comment '出库数量',
+    no_out_number       decimal(14, 5) default 0.00000              not null comment '不出库数量',
+    goods_status        int(3)         default 0                    not null comment '（0-未出库，1-已出库，2-不出库，3-部分出库)',
+    member_price        decimal(20, 5)                              not null comment '会员价(原价)',
+    average_price       decimal(20, 5)                              not null comment '均摊价',
+    seckill_price       decimal(20, 5)                              null comment '秒杀价格',
+    seckill_number      decimal(20, 5)                              null comment '秒杀数量',
+    create_at           datetime(3)    default CURRENT_TIMESTAMP(3) not null comment '创建时间',
+    update_at           datetime(3)                                 null on update CURRENT_TIMESTAMP(3) comment '更新时间',
+    refund_number       decimal(14, 5) default 0.00000              not null comment '已退款数量',
+    refund_apply_number decimal(14, 5) default 0.00000              not null comment '退款申请中数量',
+    store_discount      decimal(20, 5) default 0.00000              not null comment '单个商品店铺优惠',
+    platform_discount   decimal(20, 5) default 0.00000              not null comment '单个商品平台优惠'
+) comment '订单去重明细表';
+create index idx_tb_order_detail_distinct_order_code on tb_order_detail_distinct (order_code);
+create index idx_tb_order_detail_distinct_store_no on tb_order_detail_distinct (store_no);
+create index idx_tb_order_detail_distinct_store_prod_no on tb_order_detail_distinct (store_prod_no);
+
+create table tb_order_main
+(
+    order_id               bigint                                   not null comment '订单id' primary key,
+    user_agent_id          bigint                                   not null comment 'user_agent_id',
+    site_id                bigint                                   not null comment '站点ID',
+    store_id               bigint                                   null comment '店铺ID',
+    store_no               varchar(20)    default ''                null comment '店铺编号',
+    cust_id                bigint                                   not null comment '客户id',
+    order_code             varchar(50)    default ''                not null comment '订单编号',
+    notes                  varchar(3800)  default ''                null comment '备注',
+    total_price            decimal(20, 5)                           null comment '订单总金额',
+    link_man               varchar(50)                              null comment '联系人',
+    link_tel               varchar(20)    default ''                null comment '联系人电话',
+    link_address           varchar(300)   default ''                null comment '实际收货地址',
+    is_online_pay          int            default 0                 null comment '是否在线支付:1-在线支付,0-线下结算',
+    pay_status             int            default 0                 null comment '支付状态:0-待支付,1-已支付,2-已取消,3-退款中,4-已退款 5-已完成',
+    main_link_order        varchar(50)                              null comment '客户一次提交关联的订单编号，取第一个订单',
+    order_status           int            default 0                 null comment '订单状态0-已创建,1-待审核,2-待处理,3-已出库,4-已驳回,5-已拒收,6-已完成,7-已取消,8-待支付 9 部分出库，10 正在开票 11 正在出库',
+    order_source           varchar(5)                               null comment '订单来源,401-pc,403-wap,406-iso,407-android 408-miniapp',
+    is_invoice             char           default ''                null comment '是否开发票(1-是,0否)',
+    invoice_type           char           default '0'               null comment '发票类型(0-无发票,1-普通发票,2-专用发票)',
+    invoice_company        varchar(100)   default ''                null comment '发票-公司名称',
+    invoice_no             varchar(100)   default ''                null comment '发票-纳税人识别号',
+    invoice_bank           varchar(100)   default ''                null comment '发票-开户银行',
+    invoice_bankno         varchar(50)    default ''                null comment '发票-开户银行号',
+    invoice_address        varchar(50)    default ''                null comment '发票-注册地址',
+    invoice_tel            varchar(50)    default ''                null comment '发票-注册电话',
+    pay_type               varchar(2)     default '0'               null comment '支付方式(0-在线支付，1-余额支付+在线支付，2-余额支付), 3-线下结算',
+    direct_pay_price       decimal(20, 5)                           null comment '直接在线支付金额',
+    balance_pay_price      decimal(20, 5)                           null comment '余额支付金额',
+    yedkl                  decimal(22, 20)                          null comment '余额抵扣率',
+    order_pay_no           varchar(64)    default ''                null comment '订单支付单号',
+    create_at              timestamp      default CURRENT_TIMESTAMP null,
+    update_at              timestamp      default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    real_pay_price         decimal(20, 5)                           null comment '实付金额',
+    outstock_at            timestamp                                null comment '出库时间',
+    goods_price            decimal(20, 5) default 0.00000           null comment '商品金额',
+    order_channel          char           default '0'               not null comment '订单渠道',
+    store_discount         decimal(20, 5) default 0.00000           null comment '店铺优惠',
+    platform_discount      decimal(20, 5) default 0.00000           null comment '平台优惠',
+    pay_channel            char                                     null comment '支付渠道(1-直连支付宝支付，2-直连微信支付 3-中金接入银联 4-中金支付宝 5-中金微信 6-招行微信 7-招行支付宝)',
+    rebate_sum_price       decimal(20, 5) default 0.00000           not null comment '满减优惠总额',
+    coupon_sum_price       decimal(20, 5) default 0.00000           not null comment '优惠券总金额(店铺券)',
+    postage                decimal(20, 5) default 0.00000           not null comment '订单配送费',
+    preferential_postage   decimal(20, 5)                           null comment '订单配送费(优惠价)',
+    need_erp_syn           int            default 0                 not null comment '是否需要下发ERP，0：不需要 1：需要',
+    erp_syn_status         int            default 0                 null comment '下发状态(0-未下发，1-等待重试，2-下发中，3-下发成功)',
+    erp_syn_count          int            default 0                 not null comment '下发次数(重试策略算时间用)',
+    order_store_cust_no    varchar(127)                             null comment '商铺客户ID(下发必要条件)',
+    last_erp_syn_time      datetime(3)                              null comment '最后一次下发时间',
+    refund_sum_price       decimal(20, 5) default 0.00000           not null comment '已退款总金额',
+    refund_status          int            default 0                 not null comment '退款状态（0-无退款及申请，1-全部退款，2-部分退款，3-退款失败）',
+    sub_order_pay_no       varchar(50)    default ''                not null comment '子订单流水号(用于招行支付系统)',
+    refund_process_status  char           default '0'               null comment '退款进程状态 0:无退款或全部退款成功;1:有未完成的退款);',
+    refund_sum             decimal(20, 5) default 0.00000           not null comment '退款总金额（申请退款总金额，申请失败需要从此金额扣减）',
+    order_main_code        bigint         default 0                 not null comment '订单主单编号',
+    original_total_price   decimal(20, 5) default 0.00000           not null comment '订单原始总价，不包含任何优惠的价格 ',
+    group_sum_price        decimal(20, 5) default 0.00000           not null comment '套餐组合优惠',
+    seckill_sum_price      decimal(20, 5) default 0.00000           not null comment '秒杀优惠',
+    platform_coupon_amount decimal(20, 5) default 0.00000           not null comment '平台优惠券金额',
+    invoice_url            varchar(500)   default ''                not null comment '发票url',
+    invite_send            tinyint(1)     default 0                 not null comment '邀请有礼活动是否发券 0:否 1:是',
+    constraint order_main_ordercode  unique (order_code)
+) comment '订单主表';
+
+create index idx_order_main_code on tb_order_main (order_main_code);
+create index order_main_custid on tb_order_main (cust_id);
+create index order_main_payno on tb_order_main (order_pay_no);
+

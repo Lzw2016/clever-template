@@ -3,8 +3,11 @@ package org.clever.template.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.clever.template.dto.request.OrderDetailQuery;
+import org.clever.template.dto.request.OrderDetailQuery2;
 import org.clever.template.dto.request.QueryPermissionReq;
 import org.clever.template.entity.Permission;
+import org.clever.template.entity.TbOrderDetailDistinct;
 import org.clever.template.service.QueryPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,6 +39,16 @@ public class QueryPageController {
     @GetMapping("/find2")
     public IPage<Permission> findPermission(QueryPermissionReq query) {
         return queryPageService.findPermission(query);
+    }
+
+    @GetMapping("/find3")
+    public IPage<TbOrderDetailDistinct> findOrderDetail(OrderDetailQuery query) {
+        return queryPageService.findOrderDetail(query);
+    }
+
+    @GetMapping("/find4")
+    public List<TbOrderDetailDistinct> findOrderDetail2(OrderDetailQuery2 query) {
+        return queryPageService.findOrderDetail2(query);
     }
 
     @GetMapping("detail_data")

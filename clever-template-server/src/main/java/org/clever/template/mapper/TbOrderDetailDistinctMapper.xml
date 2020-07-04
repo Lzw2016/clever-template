@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="org.clever.template.mapper.TbOrderDetailDistinctMapper">
+
+    <select id="findOrderDetail" resultType="org.clever.template.entity.TbOrderDetailDistinct">
+        select * from tb_order_detail_distinct
+        <where>
+            <if test="query.storeNo!=null and query.storeNo!=''">
+                and store_no = #{query.storeNo}
+            </if>
+            <if test="query.orderCode!=null and query.orderCode!=''">
+                and order_code = #{query.orderCode}
+            </if>
+            <if test="query.storeProdNo!=null and query.storeProdNo!=''">
+                and store_prod_no = #{query.storeProdNo}
+            </if>
+            <if test="query.erpNo!=null and query.erpNo!=''">
+                and erp_no = #{query.erpNo}
+            </if>
+            <if test="query.prodName!=null and query.prodName!=''">
+                and prod_name = #{query.prodName}
+            </if>
+        </where>
+    </select>
+
+    <select id="findOrderDetail2" resultType="org.clever.template.entity.TbOrderDetailDistinct">
+        select * from tb_order_detail_distinct
+        <where>
+            <if test="query.storeNo!=null and query.storeNo!=''">
+                and store_no = #{query.storeNo}
+            </if>
+            <if test="query.orderCode!=null and query.orderCode!=''">
+                and order_code = #{query.orderCode}
+            </if>
+            <if test="query.storeProdNo!=null and query.storeProdNo!=''">
+                and store_prod_no = #{query.storeProdNo}
+            </if>
+            <if test="query.erpNo!=null and query.erpNo!=''">
+                and erp_no = #{query.erpNo}
+            </if>
+            <if test="query.prodName!=null and query.prodName!=''">
+                and prod_name = #{query.prodName}
+            </if>
+        </where>
+        limit 88
+    </select>
+</mapper>
